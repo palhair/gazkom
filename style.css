@@ -1,0 +1,147 @@
+/*
+Theme Name: GazKom
+*/
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+    padding: 0;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+    min-height: 101vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+    list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Указываем понятную периодичность в потоке данных у article*/
+article > * + * {
+    margin-top: 1em;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+/* Указываем box sizing */
+* {
+    font-family: "Roboto", "Lato", sans-serif;
+    box-sizing: border-box;
+    color: var(--typografy-primary);
+    letter-spacing: 0.03em;
+    padding: 0;
+}
+body {
+    margin: 0;
+}
+
+.tabs-headers {
+    margin: 10px 0 0 0;
+    display: flex;
+}
+
+.tabs-headers li:first-child {
+    border-left: 1px solid lightgray;
+}
+
+li.tab-header {
+    display: block;
+    padding: 10px 15px;
+    border: 1px solid lightgray;
+    border-bottom: 1px solid lightcoral;
+    border-left: none;
+}
+
+li.tab-header.active-tab-header {
+    border: 1px solid lightcoral;
+    border-bottom: 1px solid #50bcff00;
+    background-color: antiquewhite;
+}
+
+.tab-content {
+    padding: 25px 35px;
+    display: none;
+    transition: all 2s;
+    min-height: 600px;
+}
+
+.tab-content.active-tab-content {
+    display: block;
+
+    transition: all 2s;
+}
+
+.tabs-contents {
+    display: block;
+
+    border-radius: 0 5px 5px 5px;
+    background: #fff;
+    margin: -1px 0 0 0;
+}
+
+:root {
+    --black: #3b434e;
+    --white: white;
+    --primary: #077dc2;
+    --secondary: #5d5fef;
+
+    --typografy-primary: #0a1928;
+    --typografy-secondary: #a8a8a8;
+
+    --font-family: "Noto Sans", "sans-serif";
+}
