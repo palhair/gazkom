@@ -133,3 +133,8 @@ ul.header-nav a {
     border-radius: 50px;
     background-color: var(--white);
 }
+
+.product_items img {
+    max-width: 200px;
+    max-height: 200px;
+}
