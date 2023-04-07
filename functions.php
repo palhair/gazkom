@@ -4,6 +4,22 @@ add_action( 'wp_enqueue_scripts', 'gazkom_styles' );
 add_action( 'wp_enqueue_scripts', 'gazkom_scripts' );
 add_action('wp_print_styles', 'load_fonts');
 add_action('admin_init','true_apply_tags_for_pages');
+add_action( 'widgets_init', 'register_my_widgets' );
+function register_my_widgets(){
+
+	register_sidebar( array(
+		'name'          => sprintf(__('Sidebar %d'), $i ),
+		'id'            => "sidebar-catalog",
+		'description'   => '',
+		'class'         => '',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => "</div>\n",
+		'before_title'  => '<h2 class="widgettitle">',
+		'after_title'   => "</h2>\n",
+		'before_sidebar' => '<aside>', // WP 5.6
+		'after_sidebar'  => '</aside>', // WP 5.6
+	) );
+}
 
 
 function gazkom_styles(){
@@ -63,7 +79,7 @@ add_filter('request', 'true_expanded_request_post_tags');
 
 
 if( 'disable_gutenberg' ){
-	//remove_theme_support( 'core-block-patterns' ); // WP 5.5
+	
 
 	add_filter( 'use_block_editor_for_post_type', '__return_false', 100 );
 

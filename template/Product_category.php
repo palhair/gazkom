@@ -7,8 +7,9 @@ Template Name: Product_category_page
 ?>
 
 <?php get_header(); ?>
+<?php dynamic_sidebar('sidebar-catalog') ;?>
 
-<div class='main'>
+<article class='main'>
 
     <?php the_title( "<h1>", "</h1>" ); ?>
     
@@ -26,14 +27,15 @@ Template Name: Product_category_page
                 $parent = new WP_Query( $args );
 
                 if ( $parent->have_posts() ) : ?>
-                <div class='subcategory_item'>
+                <div class='product-box'>
                     <?php while ( $parent->have_posts() ) : $parent->the_post(); ?>
                             
-                            <div class='product_items'>
+                            <div class='product_item'>
                                 <a href="<?php the_permalink() ?>">
 
-                                <?php the_post_thumbnail('product-thumb');
-                                if(! get_the_post_thumbnail_url()): ?>
+                                <?php the_post_thumbnail('product-thumb'); ?>
+                                
+                                <?php if(! get_the_post_thumbnail_url()): ?>
                                     <img src=<?php echo get_template_directory_uri() . "/images/undefined.jpg" ?>>
                                 <?php endif ?>
                                 
@@ -59,6 +61,6 @@ Template Name: Product_category_page
                 <?php endif; wp_reset_query(); ?>
                 
 
-    <?php the_content(); ?>
-</div>
+    <div class="category-desc"><?php the_content(); ?></div>
+</article>
 <?php  get_footer(); ?>

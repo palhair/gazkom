@@ -7,7 +7,9 @@ Template Name: Product_page
 ?>
 
 <?php get_header( ); ?>
-<div class='main'>
+<?php dynamic_sidebar('sidebar-catalog') ;?>
+
+<article class='main'>
 
     <?php the_title( "<h1>", "</h1>" ); ?>
     <?php the_content( ); ?>
@@ -50,7 +52,7 @@ Template Name: Product_page
     </div>
 
   
-</div>
+</article>
 <?php
     get_footer( );
 ?>
