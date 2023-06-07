@@ -1,32 +1,3 @@
-// jQuery(document).ready(function ($) {
-//     var tab = $("#tabs .tabs-items > div");
-//     tab.hide().filter(":first").show();
-
-//     // Клики по вкладкам.
-//     $("#tabs .tabs-navSelector a")
-//         .click(function () {
-//             tab.hide();
-//             tab.filter(this.hash).show();
-//             $("#tabs .tabs-navSelector a").removeClass("active");
-//             $(this).addClass("active");
-//             console.log("asdfa");
-//             return false;
-//         })
-//         .filter(":first")
-//         .click();
-
-//     // Клики по якорным ссылкам.
-//     $(".tabs-target").click(function () {
-//         $("#tabs .tabs-navSelector a[href=" + $(this).attr("href") + "]").click();
-//     });
-
-//     // Отрытие вкладки из хеша URL
-//     // if (window.location.hash) {
-//     //     $("#tabs-navSelector a[href=" + window.location.hash + "]").click();
-//     //     window.scrollTo(0, $("#".window.location.hash).offset().top);
-//     // }
-// });
-
 class TabsControl {
     constructor(navSelector, tabsHeadersSelector, tabsContentsSelector) {
         this.tabs = [];
@@ -93,38 +64,38 @@ document.addEventListener("DOMContentLoaded", () => {
     new TabsControl(".nav-tabs", ".tabs-headers", ".tabs-contents");
 });
 
-jQuery(document).ready(function ($) {
-    const search_input = $(".search-form__input");
-    const search_results = $(".ajax-search");
+// jQuery(document).ready(function ($) {
+//     const search_input = $(".search-form__input");
+//     const search_results = $(".ajax-search");
 
-    search_input.keyup(function () {
-        let search_value = $(this).val();
+//     search_input.keyup(function () {
+//         let search_value = $(this).val();
 
-        if (search_value.length > 2) {
-            // кол-во символов
-            $.ajax({
-                url: "/wp-admin/admin-ajax.php",
-                type: "POST",
-                data: {
-                    action: "ajax_search", // functions.php
-                    term: search_value,
-                },
-                success: function (results) {
-                    search_results.fadeIn(200).html(results);
-                },
-            });
-        } else {
-            search_results.fadeOut(200);
-        }
-    });
+//         if (search_value.length > 2) {
+//             // кол-во символов
+//             $.ajax({
+//                 url: "/wp-admin/admin-ajax.php",
+//                 type: "POST",
+//                 data: {
+//                     action: "ajax_search", // functions.php
+//                     term: search_value,
+//                 },
+//                 success: function (results) {
+//                     search_results.fadeIn(200).html(results);
+//                 },
+//             });
+//         } else {
+//             search_results.fadeOut(200);
+//         }
+//     });
 
-    // Закрытие поиска при клике вне его
-    $(document).mouseup(function (e) {
-        if (
-            search_input.has(e.target).length === 0 &&
-            search_results.has(e.target).length === 0
-        ) {
-            search_results.fadeOut(200);
-        }
-    });
-});
+//     // Закрытие поиска при клике вне его
+//     $(document).mouseup(function (e) {
+//         if (
+//             search_input.has(e.target).length === 0 &&
+//             search_results.has(e.target).length === 0
+//         ) {
+//             search_results.fadeOut(200);
+//         }
+//     });
+// });

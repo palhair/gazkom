@@ -9,8 +9,8 @@
         <?php wp_head(); ?>
     </head>
     <body>
-        
-        <div class='wrap'>
+        <div class='box-shadow'></div>
+        <div class='container'>
             <header>
 
                 <div class='company-info'>
@@ -42,27 +42,23 @@
                 </div>
 
                 <div class='navbar'>
-                    <?php wp_nav_menu( [
-                    
+                    <?php wp_nav_menu( [                    
                     'menu'            => 'main',
                     'container'       => 'nav',
-                    'container_class' => '',
-                    'container_id'    => '',
                     'menu_class'      => 'header-nav',
-                    
-                    
-                    'before'          => '',
-                    'after'           => '',
-                    'link_before'     => '',
-                    'link_after'      => '',
                     'items_wrap'      => '<ul  class="%2$s">%3$s</ul>',
                     'depth'           => 0,
-                    'walker'          => '',
                     ] );?>
 
                     <button class="button order">Оставить заявку</button>
                 </div>
-            </header>
 
-            <?php yoast_breadcrumb(); ?>
+
+                
+            </header>
+            <?php 
+                    if ( function_exists('yoast_breadcrumb') ) {
+                        yoast_breadcrumb( '<div class="yoast-breadcrumbs">', '</div>' );
+                    }; 
+                ?>
            

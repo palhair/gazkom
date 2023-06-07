@@ -5,39 +5,40 @@ add_action( 'wp_enqueue_scripts', 'gazkom_scripts' );
 add_action('wp_print_styles', 'load_fonts');
 add_action('admin_init','true_apply_tags_for_pages');
 add_action( 'widgets_init', 'register_my_widgets' );
-function register_my_widgets(){
+
+function register_my_widgets(){ //add aside panel
 
 	register_sidebar( array(
-		'name'          => sprintf(__('Sidebar %d'), $i ),
+		'name'          => 'sidebar',
 		'id'            => "sidebar-catalog",
-		'description'   => '',
-		'class'         => '',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget'  => "</div>\n",
 		'before_title'  => '<h2 class="widgettitle">',
 		'after_title'   => "</h2>\n",
-		'before_sidebar' => '<aside>', // WP 5.6
-		'after_sidebar'  => '</aside>', // WP 5.6
+		'before_sidebar' => '<aside>', 
+		'after_sidebar'  => '</aside>', 
 	) );
+
 }
 
-
 function gazkom_styles(){
+    
     wp_enqueue_style( "gazkom_styles", get_stylesheet_uri() );
     wp_enqueue_style( "gaz_styles", get_template_directory_uri() . '/styles/gaz_style.css');
     
 }
+
 function gazkom_scripts(){
-    
-     //wp_enqueue_script("jquery");
+
      wp_enqueue_script( "tab", get_template_directory_uri() . '/scripts/tab.js', '', null, true);
-    
+
 }
 
-function load_fonts()
-{            
+function load_fonts(){            
+
 wp_register_style('et-googleFonts', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap'); 
-wp_enqueue_style( 'et-googleFonts');        
+wp_enqueue_style( 'et-googleFonts');   
+
 }    
 
 
@@ -49,6 +50,7 @@ add_theme_support( 'title-tag' );
 add_filter( 'nav_menu_link_attributes', 'nav_menu_link_attributes_filter', 10, 3 );
 
 function nav_menu_link_attributes_filter($atts, $item, $args){
+
     if($args->menu === "main"){
         $atts['class'] = "header__nav-item";
         if($item->current){
@@ -56,6 +58,19 @@ function nav_menu_link_attributes_filter($atts, $item, $args){
         }
     }
     return $atts;
+
+}
+
+function aside_menu_add_icon ($atts, $item, $args){
+
+    if($args->menu === "catalog"){
+        $atts['class'] = "header__nav-item";
+        if($item->current){
+            $atts['class'] .= " header__nav-item-active";
+        }
+    }
+    return $atts;
+
 }
 
 function true_apply_tags_for_pages(){
@@ -66,17 +81,16 @@ function true_apply_tags_for_pages(){
 	register_taxonomy_for_object_type('post_tag', 'page');
     
 }
- 
-
- 
+  
 function true_expanded_request_post_tags($q) {
+
 	if (isset($q['tag'])) // если в запросе присутствует параметр метки
 		$q['post_type'] = array('post', 'page');
 	return $q;
+
 }
  
 add_filter('request', 'true_expanded_request_post_tags');
-
 
 if( 'disable_gutenberg' ){
 	
@@ -97,3 +111,7 @@ if( 'disable_gutenberg' ){
 if ( function_exists( 'add_image_size' ) ) {	
 	add_image_size( 'product-thumb', 200, 200, true);
 }
+
+require get_template_directory() . '/add_svg_to_menu.php';
+WP_Nav_Menu_Custom_Fields::init();
+?>

@@ -36,7 +36,9 @@ dd {
 body {
     min-height: 101vh;
     scroll-behavior: smooth;
-    text-rendering: optimizeSpeed;
+    /*text-rendering: optimizeSpeed;*/
+    font-size: 16px;
+    line-height: 24px;
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
@@ -90,55 +92,13 @@ body {
     margin: 0;
 }
 
-.tabs-headers {
-    margin: 10px 0 0 0;
-    display: flex;
-}
-
-.tabs-headers li:first-child {
-    border-left: 1px solid lightgray;
-}
-
-li.tab-header {
-    display: block;
-    padding: 10px 15px;
-    border: 1px solid lightgray;
-    border-bottom: 1px solid lightcoral;
-    border-left: none;
-}
-
-li.tab-header.active-tab-header {
-    border: 1px solid lightcoral;
-    border-bottom: 1px solid #50bcff00;
-    background-color: antiquewhite;
-}
-
-.tab-content {
-    padding: 25px 35px;
-    display: none;
-    transition: all 2s;
-    min-height: 600px;
-}
-
-.tab-content.active-tab-content {
-    display: block;
-
-    transition: all 2s;
-}
-
-.tabs-contents {
-    display: block;
-
-    border-radius: 0 5px 5px 5px;
-    background: #fff;
-    margin: -1px 0 0 0;
-}
-
 :root {
     --black: #3b434e;
     --white: white;
     --primary: #077dc2;
+    --bgblue: #b2e5ff;
     --secondary: #5d5fef;
+    --akcent: #faff17;
 
     --typografy-primary: #0a1928;
     --typografy-secondary: #a8a8a8;

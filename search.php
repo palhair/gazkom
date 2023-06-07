@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+<?php dynamic_sidebar('sidebar-catalog') ;?>
 <?php
 $s=get_search_query();
 $args = array(
@@ -6,6 +7,9 @@ $args = array(
             );
     // The Query
 $the_query = new WP_Query( $args );
+?>
+    <article class='main'>
+    <?php
 if ( $the_query->have_posts() ) {
         _e("<h2 >Результаты запроса: ".get_query_var('s')."</h2>");
         while ( $the_query->have_posts() ) {
@@ -24,6 +28,6 @@ if ( $the_query->have_posts() ) {
           
         </div>
 <?php } ?>
-
+    </div>
 
 <?php get_footer(); ?>

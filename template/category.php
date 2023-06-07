@@ -29,7 +29,7 @@ Template Name: Category_page
             <?php while ( $parent->have_posts() ) : $parent->the_post(); ?>
                 <div class='subcategory'>
                 <a href="<?php the_permalink() ?>">
-                    <?php the_post_thumbnail(); ?>
+                    <?php the_post_thumbnail('product-thumb'); ?>
                     <?php if(! get_the_post_thumbnail_url()): ?>
                             <img src=<?php echo get_template_directory_uri() . "/images/undefined.jpg" ?>>
                     <?php endif ?>

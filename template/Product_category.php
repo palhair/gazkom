@@ -33,13 +33,13 @@ Template Name: Product_category_page
                             <div class='product_item'>
                                 <a href="<?php the_permalink() ?>">
 
-                                <?php the_post_thumbnail('product-thumb'); ?>
+                                <?php the_post_thumbnail('thumbnail'); ?>
                                 
                                 <?php if(! get_the_post_thumbnail_url()): ?>
                                     <img src=<?php echo get_template_directory_uri() . "/images/undefined.jpg" ?>>
                                 <?php endif ?>
-                                
-                                <span class='item-title'><?php the_title_attribute(); ?></span>
+                                    
+                                <div class='item-title'><?php the_field('product_card_title'); ?></div>
                                 
                                     <?php $fields = get_field_objects(); ?>
 
