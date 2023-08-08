@@ -1,5 +1,6 @@
 .box-shadow {
     position: absolute;
+    z-index: -1;
 
     width: 100%;
     height: 166px;
@@ -214,7 +215,7 @@ ul.header-nav a {
     text-decoration: none;
 }
 
-.button {
+.window-opening-button {
     cursor: pointer;
 
     border-radius: 50px;
@@ -239,7 +240,13 @@ ul.header-nav a {
     padding: 8px 30px;
 
     border: 1px solid #c7cb00;
-    background: linear-gradient(var( --akcent) , 15%, #fbff84, 85%, var( --akcent) );
+    background: linear-gradient(
+        var(--akcent),
+        15%,
+        #fbff84,
+        85%,
+        var(--akcent)
+    );
     background-color: var(--akcent);
 }
 
@@ -409,6 +416,8 @@ li.tab-header.active-tab-header:hover {
 }
 
 .tab-content {
+    overflow: hidden;
+
     height: 0;
     padding: 0;
 
@@ -418,8 +427,6 @@ li.tab-header.active-tab-header:hover {
 }
 
 .tab-content.active-tab-content {
-    display: block;
-
     height: 100%;
     min-height: 400px;
     padding: 22px 20px;
@@ -439,3 +446,98 @@ li.tab-header.active-tab-header:hover {
 */
 
 /* nd template Product card */
+
+.modal-bg,
+.modal-window {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    background-color: #00000087;
+}
+
+.modal-window-opened {
+    z-index: 103;
+
+    overflow: visible;
+
+    height: 0;
+
+    transition: opacity 0.2s ease-out;
+
+    opacity: 100;
+}
+
+.modal-bg-opened {
+    z-index: 102;
+
+    transition: opacity 0.2s ease-out;
+
+    opacity: 100;
+}
+
+.contact-form {
+    position: relative;
+    top: 80px;
+
+    width: 450px;
+    margin: 0 auto;
+    padding: 20px;
+
+    border-radius: 5px;
+    background-color: white;
+}
+
+.contact-form .contact-form__field {
+    display: flex;
+    flex-flow: column wrap;
+
+    margin: 10px 0;
+}
+
+.modal-window-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal {
+    overflow: hidden;
+
+    padding-right: 17px;
+}
+
+.close-button {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: normal;
+
+    margin-right: -10px;
+    padding: 0 10px;
+
+    cursor: pointer;
+
+    color: #7c7c7c;
+    border: none;
+    background-color: white;
+}
+
+.contact-form__success {
+    margin-top: 15px;
+}
+
+#callback-message {
+    resize: vertical;
+}
+
+.required-field {
+    color: red;
+}

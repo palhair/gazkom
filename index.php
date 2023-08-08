@@ -26,7 +26,7 @@
             the_group_fields('param_3', 'product-param'); 
             the_group_fields('param_4', 'product-param'); 
             ?>
-            <button class="button reqPrice">Узнать цену</button>
+            <button class="window-opening-button reqPrice">Узнать цену</button>
         </div>
     </div>
 
@@ -50,7 +50,7 @@
             <div class='horizontal-line'></div>
             <div class='tabs-contents'>
                 <?php foreach( $fields as $field ): 
-                if($field['value'] !== '' and $field['parent'] == 20){
+                if($field['value'] !== '' AND $field['parent'] == 20){
                         ?>
                         <div ><?php echo $field['value']; ?></div>
                         <?php
@@ -70,3 +70,4 @@
 <?php
     get_footer( );
 ?>
+

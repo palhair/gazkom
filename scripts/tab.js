@@ -62,40 +62,91 @@ class TabItem {
 
 document.addEventListener("DOMContentLoaded", () => {
     new TabsControl(".nav-tabs", ".tabs-headers", ".tabs-contents");
+    new ModalWindowMabager(".window-opening-button");
 });
 
-// jQuery(document).ready(function ($) {
-//     const search_input = $(".search-form__input");
-//     const search_results = $(".ajax-search");
+class ModalWindowMabager {
+    constructor(selector) {
+        this.closeModalWindow = this.closeModalWindow.bind(this);
+        this.openModalWindow = this.openModalWindow.bind(this);
 
-//     search_input.keyup(function () {
-//         let search_value = $(this).val();
+        this.init(selector);
+    }
 
-//         if (search_value.length > 2) {
-//             // кол-во символов
-//             $.ajax({
-//                 url: "/wp-admin/admin-ajax.php",
-//                 type: "POST",
-//                 data: {
-//                     action: "ajax_search", // functions.php
-//                     term: search_value,
-//                 },
-//                 success: function (results) {
-//                     search_results.fadeIn(200).html(results);
-//                 },
-//             });
-//         } else {
-//             search_results.fadeOut(200);
-//         }
-//     });
+    init(selector) {
+        const modalButtons = document.querySelectorAll(selector);
 
-//     // Закрытие поиска при клике вне его
-//     $(document).mouseup(function (e) {
-//         if (
-//             search_input.has(e.target).length === 0 &&
-//             search_results.has(e.target).length === 0
-//         ) {
-//             search_results.fadeOut(200);
-//         }
-//     });
-// });
+        for (let i = 0; i < modalButtons.length; i++) {
+            modalButtons[i].addEventListener("click", this.openModalWindow);
+        }
+
+        this.updateForm();
+
+        if (!document.querySelector("#callback-name")) {
+            this.openModalWindow({
+                target: document.body,
+            });
+
+            this.modalWindow.addEventListener("click", this.closeModalWindow);
+        }
+    }
+
+    updateForm() {
+        this.modalBg = document.createElement("div");
+        this.modalBg.classList.add("modal-bg");
+        document.body.append(this.modalBg);
+
+        this.modalWindow = document.createElement("div");
+        this.modalWindow.classList.add("modal-window");
+        document.body.append(this.modalWindow);
+        this.modalWindow.append(document.querySelector(".contact-form"));
+
+        this.modalWindowHead = document.createElement("div");
+        this.windowHeading = document.createElement("h3");
+        this.closeButton = document.createElement("button");
+
+        this.closeButton.innerText = "×";
+        this.closeButton.classList.add("close-button");
+        this.modalWindowHead.classList.add("modal-window-head");
+
+        this.modalWindow.firstElementChild.prepend(this.modalWindowHead);
+        this.modalWindowHead.append(this.windowHeading);
+        this.modalWindowHead.append(this.closeButton);
+    }
+
+    openModalWindow(event) {
+        if (event.target.closest(".reqPrice")) {
+            this.setHeading("Запрос цены");
+        } else if (event.target.closest(".order")) {
+            this.setHeading("Отправить заявку");
+        } else {
+            this.windowHeading.innerHTML = "Запрос отправлен. Спасибо!";
+        }
+
+        document.body.classList.add("modal");
+        this.modalWindow.classList.add("modal-window-opened");
+        this.modalBg.classList.add("modal-bg-opened");
+
+        document.addEventListener("click", this.closeModalWindow);
+    }
+
+    closeModalWindow(event) {
+        let target = event.target;
+
+        if (target == this.closeButton || target == this.modalBg) {
+            document.body.classList.remove("modal");
+            this.modalWindow.classList.remove("modal-window-opened");
+            this.modalBg.classList.remove("modal-bg-opened");
+
+            document.removeEventListener("click", this.closeModalWindow);
+        }
+    }
+
+    setHeading(heading) {
+        if (document.querySelector("#callback-name")) {
+            this.windowHeading.innerHTML = heading;
+        } else {
+            this.windowHeading.innerHTML = "Запрос отправлен. Спасибо!";
+        }
+    }
+}

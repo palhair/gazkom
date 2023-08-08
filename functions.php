@@ -114,4 +114,6 @@ if ( function_exists( 'add_image_size' ) ) {
 
 require get_template_directory() . '/add_svg_to_menu.php';
 WP_Nav_Menu_Custom_Fields::init();
-?>
+
+
+require get_template_directory() . '/contactform.php';

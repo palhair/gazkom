@@ -50,7 +50,7 @@
                     'depth'           => 0,
                     ] );?>
 
-                    <button class="button order">Оставить заявку</button>
+                    <button class="window-opening-button order">Оставить заявку</button>
                 </div>
 
 
